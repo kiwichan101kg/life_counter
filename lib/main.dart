@@ -43,6 +43,43 @@ class _LifeCounterPageState extends State<LifeCounterPage> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('カウンター'),
+      ),
+      body: ListView.builder(
+        itemCount: lifeEvents.length,
+        itemBuilder: (context, index) {
+          final lifeEvent = lifeEvents[index];
+          return Text(lifeEvent.title);
+        },
+      ),
+      floatingActionButton: FloatingActionButton(
+          child: const Icon(Icons.add),
+          onPressed: () {
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+              return const AddLifeEventPage();
+            }));
+          }),
+    );
+  }
+}
+
+class AddLifeEventPage extends StatefulWidget {
+  const AddLifeEventPage({super.key});
+
+  @override
+  State<AddLifeEventPage> createState() => _AddLifeEventPageState();
+}
+
+class _AddLifeEventPageState extends State<AddLifeEventPage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('ライフイベント追加'),
+      ),
+      body: TextFormField(),
+    );
   }
 }
